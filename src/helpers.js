@@ -1,42 +1,40 @@
 // eslint-disable-next-line import/prefer-default-export
-export const accumulateData = (arr) => {
+export const accumulateAllRegionsTotal = (arr) => {
   return arr.reduce(
     (acc, cur) => {
-      const newObj = acc;
+      acc.age.old += cur.age.old;
+      acc.age.young += cur.age.young;
+      acc.age.middle += cur.age.middle;
+      acc.sex.males += cur.sex.males;
+      acc.sex.females += cur.sex.females;
+      acc.sex.unkown += cur.sex.unkown;
+      acc.temperature.normal += cur.temperature.normal;
+      acc.temperature.high += cur.temperature.high;
+      acc.temperature.fever += cur.temperature.fever;
+      acc.temperature.unkown += cur.temperature.unkown;
+      acc.symptoms1.dryCough += cur.symptoms1.dryCough;
+      acc.symptoms1.lossSmell += cur.symptoms1.lossSmell;
+      acc.symptoms1.soreThroat += cur.symptoms1.soreThroat;
+      acc.symptoms1.weakness += cur.symptoms1.weakness;
+      acc.symptoms1.changeAppetite += cur.symptoms1.changeAppetite;
+      acc.symptoms2.severeCough += cur.symptoms2.severeCough;
+      acc.symptoms2.breathless += cur.symptoms2.breathless;
+      acc.symptoms2.difficultBreathing += cur.symptoms2.difficultBreathing;
+      acc.symptoms2.drowsiness += cur.symptoms2.drowsiness;
+      acc.symptoms2.painChest += cur.symptoms2.painChest;
+      acc.symptoms2.severeWeakness += cur.symptoms2.severeWeakness;
+      acc.travel.no += cur.travel.no;
+      acc.travel.yes += cur.travel.yes;
+      acc.travel.contact += cur.travel.contact;
+      acc.diseases.diabetes += cur.diseases.diabetes;
+      acc.diseases.bloodPressure += cur.diseases.bloodPressure;
+      acc.diseases.heartDisease += cur.diseases.heartDisease;
+      acc.diseases.kidneyDisease += cur.diseases.kidneyDisease;
+      acc.diseases.lungDisease += cur.diseases.lungDisease;
+      acc.diseases.stroke += cur.diseases.stroke;
+      acc.diseases.reducedImunity += cur.diseases.reducedImunity;
 
-      newObj.age.old += cur.age.old;
-      newObj.age.young += cur.age.young;
-      newObj.age.middle += cur.age.middle;
-      newObj.sex.males += cur.sex.males;
-      newObj.sex.females += cur.sex.females;
-      newObj.sex.unkown += cur.sex.unkown;
-      newObj.temperature.normal += cur.temperature.normal;
-      newObj.temperature.high += cur.temperature.high;
-      newObj.temperature.fever += cur.temperature.fever;
-      newObj.temperature.unkown += cur.temperature.unkown;
-      newObj.symptoms1.dryCough += cur.symptoms1.dryCough;
-      newObj.symptoms1.lossSmell += cur.symptoms1.lossSmell;
-      newObj.symptoms1.soreThroat += cur.symptoms1.soreThroat;
-      newObj.symptoms1.weakness += cur.symptoms1.weakness;
-      newObj.symptoms1.changeAppetite += cur.symptoms1.changeAppetite;
-      newObj.symptoms2.severeCough += cur.symptoms2.severeCough;
-      newObj.symptoms2.breathless += cur.symptoms2.breathless;
-      newObj.symptoms2.difficultBreathing += cur.symptoms2.difficultBreathing;
-      newObj.symptoms2.drowsiness += cur.symptoms2.drowsiness;
-      newObj.symptoms2.painChest += cur.symptoms2.painChest;
-      newObj.symptoms2.severeWeakness += cur.symptoms2.severeWeakness;
-      newObj.travel.no += cur.travel.no;
-      newObj.travel.yes += cur.travel.yes;
-      newObj.travel.contact += cur.travel.contact;
-      newObj.diseases.diabetes += cur.diseases.diabetes;
-      newObj.diseases.bloodPressure += cur.diseases.bloodPressure;
-      newObj.diseases.heartDisease += cur.diseases.heartDisease;
-      newObj.diseases.kidneyDisease += cur.diseases.kidneyDisease;
-      newObj.diseases.lungDisease += cur.diseases.lungDisease;
-      newObj.diseases.stroke += cur.diseases.stroke;
-      newObj.diseases.reducedImunity += cur.diseases.reducedImunity;
-
-      return newObj;
+      return acc;
     },
     {
       age: { young: 0, middle: 0, old: 0 },

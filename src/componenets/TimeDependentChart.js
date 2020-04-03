@@ -8,7 +8,7 @@ const theme = {
 };
 
 const MyResponsiveLine = ({ data }) => (
-  <div style={{ height: '60vh' }}>
+  <div style={{ height: '40vh' }}>
     <ResponsiveLine
       data={data}
       theme={theme}
@@ -22,7 +22,7 @@ const MyResponsiveLine = ({ data }) => (
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'transportation',
+        legend: 'vreme',
         legendOffset: 36,
         legendPosition: 'middle',
       }}
@@ -31,7 +31,7 @@ const MyResponsiveLine = ({ data }) => (
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'count',
+        legend: 'broj',
         legendOffset: -40,
         legendPosition: 'middle',
       }}

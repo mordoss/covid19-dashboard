@@ -2,11 +2,17 @@ import React from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const TimeDependentCheckers = ({ checkersArray, setCheck }) => {
+const PropertyCheckers = ({ checkersArray, setCheck }) => {
   const selectableProperties = [
-    ['temperature', 'high', 'Visoka temperatura'],
-    ['sex', 'males', 'Muskarci'],
-    ['diseases', 'stroke', 'Šlog'],
+    ['temperature', 'high', ' 37°C-38.9°C'],
+    ['temperature', 'fever', '>38.9°C'],
+    ['symptoms1', 'dryCough', 'Suv kašalj'],
+    ['symptoms2', 'severeCough', 'Jak kašalj'],
+    ['symptoms1', 'lossSmell', 'Smanjeno čulo mirisa'],
+    ['symptoms1', 'soreThroat', 'Suvo grlo'],
+    ['symptoms1', 'weakness', 'Slabost'],
+    ['symptoms2', 'painChest', 'Bol u grudima'],
+    ['symptoms2', 'severeWeakness', 'Iznemoglost'],
   ];
   const toggleItem = (prop) =>
     setCheck(
@@ -33,4 +39,4 @@ const TimeDependentCheckers = ({ checkersArray, setCheck }) => {
   );
 };
 
-export default TimeDependentCheckers;
+export default PropertyCheckers;

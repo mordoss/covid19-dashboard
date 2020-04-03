@@ -3,16 +3,16 @@ import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import TimeDependentChartCheckers from './TimeDependentCheckers';
+import PropertyCheckers from './PropertyCheckers';
 import TimeDependentChart from './TimeDependentChart';
-import fakeData, { regions } from '../fakeData';
+import { regions, intervalsWithRegions } from '../fakeData';
 
 const TimeDependent = () => {
-  const [regionSelected, setRegion] = useState('Svi');
-  const [checkersArray, setCheck] = useState([['sex', 'males']]);
+  const [regionSelected, setRegion] = useState('Beograd');
+  const [checkersArray, setCheck] = useState([['temperature', 'fever', '38.9°C']]);
 
   const objectToDataArr = (prop) =>
-    Object.entries(fakeData).reduce((acc, cur, i) => {
+    Object.entries(intervalsWithRegions).reduce((acc, cur, i) => {
       acc[i] = {
         x: cur[0],
         y: cur[1][regionSelected][prop[0]][prop[1]],
@@ -27,7 +27,7 @@ const TimeDependent = () => {
   }));
 
   return (
-    <Paper>
+    <Paper style={{ margin: 16, padding: 16 }}>
       <FormControl>
         <InputLabel>Region</InputLabel>
         <Select
@@ -36,14 +36,14 @@ const TimeDependent = () => {
           onChange={(e) => setRegion(e.target.value)}
           native
         >
-          {[...regions, 'Svi'].map((region) => (
+          {regions.map((region) => (
             <option value={region} key={region}>
               {region}
             </option>
           ))}
         </Select>
       </FormControl>
-      <TimeDependentChartCheckers checkersArray={checkersArray} setCheck={setCheck} />
+      <PropertyCheckers checkersArray={checkersArray} setCheck={setCheck} />
       <TimeDependentChart data={dataForChart} />
     </Paper>
   );
