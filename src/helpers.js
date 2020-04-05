@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
 export const accumulateAllRegionsTotal = (arr) => {
   return arr.reduce(
     (acc, cur) => {
@@ -62,4 +61,20 @@ export const accumulateAllRegionsTotal = (arr) => {
       last48h: { better: 0, same: 0, worse: 0, critical: 0 },
     }
   );
+};
+
+export const convertPropertyToNative = (property) => {
+  switch (property) {
+    case 'normal':
+      return 'normalna';
+    case 'fever':
+      return '>38.9°C';
+    case 'high':
+      return '37°C-38.9°C';
+    case 'unknown':
+      return 'nepoznato';
+
+    default:
+      return 'lola';
+  }
 };

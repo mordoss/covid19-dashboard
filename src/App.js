@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from './componenets/Container';
-import firebase from './firebase';
+// import firebase from './firebase';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles();
-  const [regions, setRegions] = useState('null');
+  /* const [regions, setRegions] = useState('null');
 
-  /* useEffect(() => {
+  /useEffect(() => {
     const logCities = async () => {
       const db = firebase.firestore();
       const regionsRef = db.collection('regions');
@@ -26,14 +26,12 @@ const App = () => {
       setRegions(allRegionsObject);
     };
     logCities();
-  }, []);
- */
+  }, []); */
+
   return (
-    regions && (
-      <div className={classes.container}>
-        <Container />
-      </div>
-    )
+    <div className={classes.container}>
+      <Container />
+    </div>
   );
 };
 

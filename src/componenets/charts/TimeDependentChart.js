@@ -12,7 +12,7 @@ const MyResponsiveLine = ({ data }) => (
     <ResponsiveLine
       data={data}
       theme={theme}
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+      margin={{ top: 20, right: 20, bottom: 50, left: 40 }}
       xScale={{ type: 'point' }}
       yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
       axisTop={null}
@@ -22,18 +22,12 @@ const MyResponsiveLine = ({ data }) => (
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'vreme',
-        legendOffset: 36,
-        legendPosition: 'middle',
       }}
       axisLeft={{
         orient: 'left',
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: 'broj',
-        legendOffset: -40,
-        legendPosition: 'middle',
       }}
       colors={{ scheme: 'nivo' }}
       pointSize={10}
@@ -45,11 +39,12 @@ const MyResponsiveLine = ({ data }) => (
       useMesh
       legends={[
         {
-          anchor: 'bottom-right',
-          direction: 'column',
+          itemTextColor: '#eee',
+          anchor: 'bottom',
+          direction: 'row',
           justify: false,
           translateX: 100,
-          translateY: 0,
+          translateY: 40,
           itemsSpacing: 0,
           itemDirection: 'left-to-right',
           itemWidth: 80,

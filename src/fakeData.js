@@ -36,8 +36,8 @@ export const regions = [
 
 const fake1 = {
   age: { young: 501, middle: 299, old: 200 },
-  sex: { males: 305, females: 300, unkown: 395 },
-  temperature: { normal: 145, high: 200, fever: 35, unkown: 350 },
+  sex: { males: 305, females: 300, unknown: 395 },
+  temperature: { normal: 145, high: 200, fever: 35, unknown: 350 },
   symptoms1: { dryCough: 724, lossSmell: 145, soreThroat: 155, weakness: 9, changeAppetite: 12 },
   symptoms2: {
     severeCough: 12,
@@ -62,8 +62,8 @@ const fake1 = {
 
 const fake2 = {
   age: { young: 521, middle: 219, old: 220 },
-  sex: { males: 625, females: 120, unkown: 115 },
-  temperature: { normal: 365, high: 20, fever: 35, unkown: 370 },
+  sex: { males: 625, females: 120, unknown: 115 },
+  temperature: { normal: 365, high: 20, fever: 35, unknown: 370 },
   symptoms1: { dryCough: 24, lossSmell: 105, soreThroat: 45, weakness: 90, changeAppetite: 22 },
   symptoms2: {
     severeCough: 42,
@@ -88,8 +88,8 @@ const fake2 = {
 
 const fake3 = {
   age: { young: 531, middle: 229, old: 230 },
-  sex: { males: 335, females: 330, unkown: 425 },
-  temperature: { normal: 175, high: 230, fever: 335, unkown: 380 },
+  sex: { males: 335, females: 330, unknown: 425 },
+  temperature: { normal: 175, high: 230, fever: 335, unknown: 380 },
   symptoms1: { dryCough: 24, lossSmell: 15, soreThroat: 145, weakness: 9, changeAppetite: 12 },
   symptoms2: {
     severeCough: 42,
@@ -114,8 +114,8 @@ const fake3 = {
 
 const fake4 = {
   age: { young: 631, middle: 329, old: 330 },
-  sex: { males: 435, females: 430, unkown: 525 },
-  temperature: { normal: 25, high: 930, fever: 35, unkown: 480 },
+  sex: { males: 435, females: 430, unknown: 525 },
+  temperature: { normal: 25, high: 930, fever: 35, unknown: 480 },
   symptoms1: { dryCough: 4, lossSmell: 111, soreThroat: 545, weakness: 555, changeAppetite: 2 },
   symptoms2: {
     severeCough: 2,
@@ -176,61 +176,62 @@ const accumulateSingleProperty = (region, property, subproperty) =>
     return newValue;
   }, 0);
 
-export const regionsAccumulated = regions
-  .filter((e) => e !== 'Svi')
-  .map((region) => {
-    return {
-      region,
-      age: {
-        young: accumulateSingleProperty(region, 'age', 'young'),
-        middle: accumulateSingleProperty(region, 'age', 'middle'),
-        old: accumulateSingleProperty(region, 'age', 'old'),
-      },
-      sex: {
-        males: accumulateSingleProperty(region, 'sex', 'males'),
-        females: accumulateSingleProperty(region, 'sex', 'females'),
-        unkown: accumulateSingleProperty(region, 'sex', 'unkown'),
-      },
-      temperature: {
-        normal: accumulateSingleProperty(region, 'temperature', 'normal'),
-        high: accumulateSingleProperty(region, 'temperature', 'high'),
-        fever: accumulateSingleProperty(region, 'temperature', 'fever'),
-        unkown: accumulateSingleProperty(region, 'temperature', 'unkown'),
-      },
-      symptoms1: {
-        dryCough: accumulateSingleProperty(region, 'symptoms1', 'dryCough'),
-        lossSmell: accumulateSingleProperty(region, 'symptoms1', 'lossSmell'),
-        soreThroat: accumulateSingleProperty(region, 'symptoms1', 'soreThroat'),
-        weakness: accumulateSingleProperty(region, 'symptoms1', 'weakness'),
-        changeAppetite: accumulateSingleProperty(region, 'symptoms1', 'changeAppetite'),
-      },
-      symptoms2: {
-        severeCough: accumulateSingleProperty(region, 'symptoms2', 'severeCough'),
-        breathless: accumulateSingleProperty(region, 'symptoms2', 'breathless'),
-        difficultBreathing: accumulateSingleProperty(region, 'symptoms2', 'difficultBreathing'),
-        drowsiness: accumulateSingleProperty(region, 'symptoms2', 'drowsiness'),
-        painChest: accumulateSingleProperty(region, 'symptoms2', 'painChest'),
-        severeWeakness: accumulateSingleProperty(region, 'symptoms2', 'severeWeakness'),
-      },
-      travel: {
-        no: accumulateSingleProperty(region, 'travel', 'no'),
-        yes: accumulateSingleProperty(region, 'travel', 'yes'),
-        contact: accumulateSingleProperty(region, 'travel', 'contact'),
-      },
-      diseases: {
-        diabetes: accumulateSingleProperty(region, 'diseases', 'diabetes'),
-        bloodPressure: accumulateSingleProperty(region, 'diseases', 'bloodPressure'),
-        heartDisease: accumulateSingleProperty(region, 'diseases', 'heartDisease'),
-        kidneyDisease: accumulateSingleProperty(region, 'diseases', 'kidneyDisease'),
-        lungDisease: accumulateSingleProperty(region, 'diseases', 'lungDisease'),
-        stroke: accumulateSingleProperty(region, 'diseases', 'stroke'),
-        reducedImunity: accumulateSingleProperty(region, 'diseases', 'reducedImunity'),
-      },
-      last48h: {
-        better: accumulateSingleProperty(region, 'last48h', 'better'),
-        same: accumulateSingleProperty(region, 'last48h', 'same'),
-        worse: accumulateSingleProperty(region, 'last48h', 'worse'),
-        critical: accumulateSingleProperty(region, 'last48h', 'critical'),
-      },
-    };
-  });
+export const regionsAccumulated = regions.map((region) => {
+  return {
+    region,
+    age: {
+      young: accumulateSingleProperty(region, 'age', 'young'),
+      middle: accumulateSingleProperty(region, 'age', 'middle'),
+      old: accumulateSingleProperty(region, 'age', 'old'),
+    },
+    sex: {
+      males: accumulateSingleProperty(region, 'sex', 'males'),
+      females: accumulateSingleProperty(region, 'sex', 'females'),
+      unknown: accumulateSingleProperty(region, 'sex', 'unknown'),
+    },
+    temperature: {
+      normal: accumulateSingleProperty(region, 'temperature', 'normal'),
+      high: accumulateSingleProperty(region, 'temperature', 'high'),
+      fever: accumulateSingleProperty(region, 'temperature', 'fever'),
+      unknown: accumulateSingleProperty(region, 'temperature', 'unknown'),
+    },
+    symptoms1: {
+      dryCough: accumulateSingleProperty(region, 'symptoms1', 'dryCough'),
+      lossSmell: accumulateSingleProperty(region, 'symptoms1', 'lossSmell'),
+      soreThroat: accumulateSingleProperty(region, 'symptoms1', 'soreThroat'),
+      weakness: accumulateSingleProperty(region, 'symptoms1', 'weakness'),
+      changeAppetite: accumulateSingleProperty(region, 'symptoms1', 'changeAppetite'),
+    },
+    symptoms2: {
+      severeCough: accumulateSingleProperty(region, 'symptoms2', 'severeCough'),
+      breathless: accumulateSingleProperty(region, 'symptoms2', 'breathless'),
+      difficultBreathing: accumulateSingleProperty(region, 'symptoms2', 'difficultBreathing'),
+      drowsiness: accumulateSingleProperty(region, 'symptoms2', 'drowsiness'),
+      painChest: accumulateSingleProperty(region, 'symptoms2', 'painChest'),
+      severeWeakness: accumulateSingleProperty(region, 'symptoms2', 'severeWeakness'),
+    },
+    travel: {
+      no: accumulateSingleProperty(region, 'travel', 'no'),
+      yes: accumulateSingleProperty(region, 'travel', 'yes'),
+      contact: accumulateSingleProperty(region, 'travel', 'contact'),
+    },
+    diseases: {
+      diabetes: accumulateSingleProperty(region, 'diseases', 'diabetes'),
+      bloodPressure: accumulateSingleProperty(region, 'diseases', 'bloodPressure'),
+      heartDisease: accumulateSingleProperty(region, 'diseases', 'heartDisease'),
+      kidneyDisease: accumulateSingleProperty(region, 'diseases', 'kidneyDisease'),
+      lungDisease: accumulateSingleProperty(region, 'diseases', 'lungDisease'),
+      stroke: accumulateSingleProperty(region, 'diseases', 'stroke'),
+      reducedImunity: accumulateSingleProperty(region, 'diseases', 'reducedImunity'),
+    },
+    last48h: {
+      better: accumulateSingleProperty(region, 'last48h', 'better'),
+      same: accumulateSingleProperty(region, 'last48h', 'same'),
+      worse: accumulateSingleProperty(region, 'last48h', 'worse'),
+      critical: accumulateSingleProperty(region, 'last48h', 'critical'),
+    },
+  };
+});
+
+export const countTotalPieTesters = (region) =>
+  Object.values(regionsAccumulated.find((e) => e.region === region).age).reduce((a, b) => a + b, 0);
