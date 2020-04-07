@@ -2,46 +2,60 @@ import React, { useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 import RankChart from './charts/RankChart';
-import Format from './Format';
-import PropertyCheckers from './PropertyCheckers';
+import Format from './shared/Format';
+import Sort from './shared/Sort';
+import Intervals from './shared/Intevrals';
+import PropertyCheckers from './shared/PropertyCheckers';
 import { regionsAccumulated } from '../fakeData';
 
 const Rank = () => {
-  const [checkersArray, setCheck] = useState([['temperature', 'fever', '>38.9°C']]);
+  const [checkersArray, setCheck] = useState([
+    ['symptoms2', 'severeCough', 'Jak kašalj'],
+    ['diseases', 'reducedImunity', 'Narušen imunitet'],
+  ]);
   const [sortProperty, setSortProperty] = useState(checkersArray[0][2]);
-  const [sort, setSort] = useState('desc');
-  const [format, setFormat] = useState('num');
+  const [sort, setSort] = useState(false);
+  const [format, setFormat] = useState(true);
+  const [intervalSelected, setInterval] = useState('Danas');
 
   const makeData = (region) =>
     checkersArray.reduce((acc, cur) => {
       const totalTesters = Object.values(region.age).reduce((a, b) => a + b, 0);
-      acc[cur[2]] =
-        format === 'num'
-          ? region[cur[0]][cur[1]]
-          : Math.round((region[cur[0]][cur[1]] / totalTesters) * 100);
+      acc[cur[2].substr(0, 10)] = format
+        ? region[cur[0]][cur[1]]
+        : Math.round((region[cur[0]][cur[1]] / totalTesters) * 100);
       return acc;
     }, {});
 
   const data = regionsAccumulated
     .filter((region) => region.region !== 'Svi')
     .map((region) => ({
-      region: region.region,
+      region: region.region
+        .split(/(?=[A-Z])/)
+        .map((word, i, arr) => {
+          if (arr.length !== 1 && !i) {
+            return `${word.substring(0, 1)}. `;
+          }
+          return word;
+        })
+        .join(''),
       ...makeData(region),
     }))
-    .sort((a, b) =>
-      sort === 'desc' ? b[sortProperty] - a[sortProperty] : a[sortProperty] - b[sortProperty]
-    )
-    .slice(0, 6);
+    .sort((a, b) => (sort ? b[sortProperty] - a[sortProperty] : a[sortProperty] - b[sortProperty]))
+    .slice(0, 5);
 
   return (
     <>
-      <div style={{ display: 'flex' }}>
-        <FormControl>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: 12,
+          flexWrap: 'wrap',
+        }}
+      >
+        <FormControl variant="filled" style={{ marginTop: 8 }}>
           <InputLabel>Sortiraj po</InputLabel>
           <Select value={sortProperty} onChange={(e) => setSortProperty(e.target.value)} native>
             {checkersArray.map((arr) => (
@@ -52,20 +66,21 @@ const Rank = () => {
           </Select>
         </FormControl>
 
-        <FormControl style={{ marginLeft: 16 }}>
-          <FormLabel>Sortiraj</FormLabel>
-          <RadioGroup
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            style={{ flexDirection: 'row' }}
-          >
-            <FormControlLabel value="asc" control={<Radio />} label="Uzlazno" />
-            <FormControlLabel value="desc" control={<Radio />} label="Silazno" />
-          </RadioGroup>
-        </FormControl>
-        <Format format={format} setFormat={setFormat} />
+        <Intervals intervalSelected={intervalSelected} setInterval={setInterval} />
       </div>
       <PropertyCheckers checkersArray={checkersArray} setCheck={setCheck} maxProperties={4} />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginBottom: 12,
+          flexWrap: 'wrap',
+        }}
+      >
+        <Sort sort={sort} setSort={setSort} />
+        <Format format={format} setFormat={setFormat} />
+      </div>
+
       <RankChart data={data} />
     </>
   );

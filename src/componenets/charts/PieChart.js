@@ -1,56 +1,61 @@
 import React from 'react';
 import { ResponsivePie } from '@nivo/pie';
 
-/* const data = [
-  {
-    id: 'rust',
-    label: 'rust',
-    value: 263,
-    color: 'hsl(145, 70%, 50%)',
+const theme = {
+  tooltip: {
+    container: {
+      color: 'white',
+      background: '#15182A',
+    },
   },
-  {
-    id: 'haskell',
-    label: 'haskell',
-    value: 69,
-    color: 'hsl(270, 70%, 50%)',
-  },
-  {
-    id: 'elixir',
-    label: 'elixir',
-    value: 333,
-    color: 'hsl(140, 70%, 50%)',
-  },
-  {
-    id: 'javascript',
-    label: 'javascript',
-    value: 295,
-    color: 'hsl(203, 70%, 50%)',
-  },
-  {
-    id: 'scala',
-    label: 'scala',
-    value: 83,
-    color: 'hsl(168, 70%, 50%)',
-  },
-];
- */
+};
+
 const MyResponsivePie = ({ data }) => (
-  <div style={{ height: '30vh' }}>
+  <div style={{ height: '57vh' }}>
     <ResponsivePie
+      borderWidth={6}
       data={data}
+      theme={theme}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-      innerRadius={0.5}
+      innerRadius={0.2}
       padAngle={3}
       cornerRadius={5}
       colors={{ scheme: 'nivo' }}
-      borderWidth={3}
       borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
-      enableRadialLabels={false}
       slicesLabelsSkipAngle={10}
       slicesLabelsTextColor="#333333"
       animate
       motionStiffness={90}
       motionDamping={15}
+      radialLabelsSkipAngle={10}
+      radialLabelsTextXOffset={6}
+      radialLabelsTextColor="#E4DFC7"
+      radialLabelsLinkOffset={0}
+      radialLabelsLinkDiagonalLength={8}
+      radialLabelsLinkHorizontalLength={4}
+      radialLabelsLinkStrokeWidth={1}
+      radialLabelsLinkColor={{ from: 'color' }}
+      legends={[
+        {
+          itemTextColor: '#eee',
+          anchor: 'bottom-right',
+          direction: 'column',
+          translateY: 66,
+          translateX: 36,
+          itemWidth: 100,
+          itemHeight: 18,
+          symbolSize: 18,
+          symbolShape: 'circle',
+          effects: [
+            {
+              on: 'hover',
+              style: {
+                itemTextColor: '#000',
+              },
+            },
+          ],
+        },
+      ]}
       defs={[
         {
           id: 'dots',
@@ -74,73 +79,70 @@ const MyResponsivePie = ({ data }) => (
       fill={[
         {
           match: {
-            id: 'ruby',
+            id: 'Muški',
           },
           id: 'dots',
         },
         {
           match: {
-            id: 'c',
+            id: 'Nepoznato',
           },
           id: 'dots',
         },
         {
           match: {
-            id: 'go',
+            id: 'Bez putovanja ili kontakta sa simptomima',
           },
           id: 'dots',
         },
         {
           match: {
-            id: 'python',
+            id: 'Nepromenjeno',
           },
           id: 'dots',
         },
         {
           match: {
-            id: 'scala',
+            id: 'Mladi',
+          },
+          id: 'dots',
+        },
+        {
+          match: {
+            id: '37°C-38.9°C',
           },
           id: 'lines',
         },
         {
           match: {
-            id: 'lisp',
+            id: 'Ženski',
           },
           id: 'lines',
         },
         {
           match: {
-            id: 'elixir',
+            id: 'Putovanje ili kontakt sa simptomima',
           },
           id: 'lines',
         },
         {
           match: {
-            id: 'javascript',
+            id: 'Stari',
+          },
+          id: 'lines',
+        },
+        {
+          match: {
+            id: 'Pogoršano',
           },
           id: 'lines',
         },
       ]}
-      legends={[
-        {
-          itemTextColor: '#eee',
-          anchor: 'bottom',
-          direction: 'row',
-          translateY: 56,
-          itemWidth: 100,
-          itemHeight: 18,
-          symbolSize: 18,
-          symbolShape: 'circle',
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemTextColor: '#000',
-              },
-            },
-          ],
-        },
-      ]}
+      tooltip={(obj) => (
+        <p>
+          {obj.id}: {obj.value}
+        </p>
+      )}
     />
   </div>
 );

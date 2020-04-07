@@ -6,11 +6,11 @@ export const accumulateAllRegionsTotal = (arr) => {
       acc.age.middle += cur.age.middle;
       acc.sex.males += cur.sex.males;
       acc.sex.females += cur.sex.females;
-      acc.sex.unkown += cur.sex.unkown;
+      acc.sex.unknown += cur.sex.unknown;
       acc.temperature.normal += cur.temperature.normal;
       acc.temperature.high += cur.temperature.high;
       acc.temperature.fever += cur.temperature.fever;
-      acc.temperature.unkown += cur.temperature.unkown;
+      acc.temperature.unknown += cur.temperature.unknown;
       acc.symptoms1.dryCough += cur.symptoms1.dryCough;
       acc.symptoms1.lossSmell += cur.symptoms1.lossSmell;
       acc.symptoms1.soreThroat += cur.symptoms1.soreThroat;
@@ -37,8 +37,8 @@ export const accumulateAllRegionsTotal = (arr) => {
     },
     {
       age: { young: 0, middle: 0, old: 0 },
-      sex: { males: 0, females: 0, unkown: 0 },
-      temperature: { normal: 0, high: 0, fever: 0, unkown: 0 },
+      sex: { males: 0, females: 0, unknown: 0 },
+      temperature: { normal: 0, high: 0, fever: 0, unknown: 0 },
       symptoms1: { dryCough: 0, lossSmell: 0, soreThroat: 0, weakness: 0, changeAppetite: 0 },
       symptoms2: {
         severeCough: 0,
@@ -66,13 +66,37 @@ export const accumulateAllRegionsTotal = (arr) => {
 export const convertPropertyToNative = (property) => {
   switch (property) {
     case 'normal':
-      return 'normalna';
+      return 'Normalna';
     case 'fever':
       return '>38.9°C';
     case 'high':
       return '37°C-38.9°C';
     case 'unknown':
-      return 'nepoznato';
+      return 'Nepoznato';
+    case 'males':
+      return 'Muški';
+    case 'females':
+      return 'Ženski';
+    case 'no':
+      return 'Bez putovanja ili kontakta sa simptomima';
+    case 'yes':
+      return 'Putovanje ili kontakt sa simptomima';
+    case 'contact':
+      return 'Kontakt sa zaraženim';
+    case 'young':
+      return 'Mladi';
+    case 'old':
+      return 'Stari';
+    case 'middle':
+      return '40-65 godina';
+    case 'better':
+      return 'Bolje';
+    case 'same':
+      return 'Nepromenjeno';
+    case 'worse':
+      return 'Pogoršano';
+    case 'critical':
+      return 'Kritično';
 
     default:
       return 'lola';

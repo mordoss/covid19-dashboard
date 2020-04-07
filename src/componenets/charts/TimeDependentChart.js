@@ -8,7 +8,7 @@ const theme = {
 };
 
 const MyResponsiveLine = ({ data }) => (
-  <div style={{ height: '40vh' }}>
+  <div style={{ height: '50vh' }}>
     <ResponsiveLine
       data={data}
       theme={theme}
@@ -17,6 +17,7 @@ const MyResponsiveLine = ({ data }) => (
       yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
       axisTop={null}
       axisRight={null}
+      lineWidth={3}
       axisBottom={{
         orient: 'bottom',
         tickSize: 5,
@@ -43,8 +44,8 @@ const MyResponsiveLine = ({ data }) => (
           anchor: 'bottom',
           direction: 'row',
           justify: false,
-          translateX: 100,
-          translateY: 40,
+          translateX: 0,
+          translateY: 50,
           itemsSpacing: 0,
           itemDirection: 'left-to-right',
           itemWidth: 80,
@@ -64,6 +65,14 @@ const MyResponsiveLine = ({ data }) => (
           ],
         },
       ]}
+      tooltip={(obj) => (
+        <div style={{ backgroundColor: '#15182A', padding: 8, borderRadius: 3 }}>
+          <p> {obj.point.data.x}</p>
+          <p>
+            {obj.point.id}: {obj.point.data.y}
+          </p>
+        </div>
+      )}
     />
   </div>
 );

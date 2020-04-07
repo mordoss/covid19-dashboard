@@ -3,18 +3,24 @@ import { ResponsiveBar } from '@nivo/bar';
 
 const theme = {
   axis: {
-    ticks: { text: { fill: '#999', fontSize: 11 } },
+    ticks: { text: { fill: '#999', fontSize: 10 } },
+  },
+  tooltip: {
+    container: {
+      color: 'white',
+      background: '#15182A',
+    },
   },
 };
-
 const MyResponsiveBar = ({ data }) => (
-  <div style={{ height: '30vh' }}>
+  <div style={{ height: '50vh' }}>
     <ResponsiveBar
+      borderWidth={3}
       theme={theme}
       data={data}
       keys={Object.keys(Object.values(data)[0]).slice(1)}
       indexBy="region"
-      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      margin={{ top: 30, right: 10, bottom: 50, left: 35 }}
       padding={0.3}
       groupMode="grouped"
       colors={{ scheme: 'nivo' }}
@@ -31,9 +37,7 @@ const MyResponsiveBar = ({ data }) => (
         tickPadding: 5,
         tickRotation: 0,
       }}
-      labelSkipWidth={12}
-      labelSkipHeight={12}
-      labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+      enableLabel={false}
       animate
       motionStiffness={90}
       motionDamping={15}
@@ -41,11 +45,11 @@ const MyResponsiveBar = ({ data }) => (
         {
           itemTextColor: '#eee',
           dataFrom: 'keys',
-          anchor: 'bottom-right',
-          direction: 'column',
+          anchor: 'bottom',
+          direction: 'row',
           justify: false,
-          translateX: 120,
-          translateY: 0,
+          translateX: 0,
+          translateY: 50,
           itemsSpacing: 2,
           itemWidth: 100,
           itemHeight: 20,
@@ -62,6 +66,19 @@ const MyResponsiveBar = ({ data }) => (
           ],
         },
       ]}
+      tooltip={(obj) => (
+        <>
+          <p>{obj.data.region}</p>
+          {Object.entries(obj.data).map(
+            (prop, i) =>
+              i > 0 && (
+                <p key={prop[0]}>
+                  {prop[0]}: {prop[1]}
+                </p>
+              )
+          )}
+        </>
+      )}
     />
   </div>
 );

@@ -7,6 +7,20 @@ import * as serviceWorker from './serviceWorker';
 
 const theme = createMuiTheme({
   palette: { type: 'dark' },
+  overrides: {
+    MuiInputBase: {
+      root: {
+        maxWidth: '8rem',
+        maxHeight: '3rem',
+      },
+    },
+    MuiPaper: {
+      root: { backgroundColor: '#1B2038' },
+    },
+    MuiGrid: {
+      root: { backgroundColor: '#15182A' },
+    },
+  },
 });
 
 ReactDOM.render(
